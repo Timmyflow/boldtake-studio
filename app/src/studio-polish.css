@@ -1,0 +1,64 @@
+/* Shared motion accents: entrance belongs to wrappers, magnetic movement to surfaces. */
+.bold-cut .opening-actions{gap:14px;flex-wrap:wrap}
+.bold-cut .opening-actions>.brand-action{border:0;background:none;padding:0;border-radius:6px;display:inline-block;min-height:52px;text-decoration:none}
+.bold-cut .brand-action .magnetic-surface{min-height:54px;padding:15px 18px;gap:18px;font-size:14px;line-height:1.3;border:1px solid var(--studio-lime);border-radius:5px;color:var(--studio-bg)}
+.bold-cut .brand-action .magnetic-surface>svg{width:20px!important;height:20px!important;flex:none}
+.bold-cut .brand-action-secondary .magnetic-surface{background:rgba(18,22,21,.82);color:var(--studio-ink);border-color:rgba(220,240,195,.5)}
+.bold-cut .brand-action-secondary:hover .magnetic-surface{background:var(--studio-bg);border-color:var(--studio-lime);color:var(--studio-lime)}
+.bold-cut .brand-action-secondary:hover svg{rotate:0deg;translate:2px 0}
+.brand-portal{position:relative;padding-top:60px;padding-bottom:72px;overflow:hidden}
+.portal-copy{display:flex;align-items:start;justify-content:space-between;gap:28px;position:relative;z-index:1}
+.bold-cut .portal-copy h2{font-size:clamp(30px,4.1vw,58px);font-weight:500;letter-spacing:-.05em;line-height:1.1;margin:0}
+.bold-cut .portal-copy p{font-size:clamp(17px,2vw,26px);line-height:1.4;max-width:16ch;color:var(--studio-muted);margin:0;transition:color .8s}
+.brand-portal.is-settled .portal-copy p{color:var(--studio-lime)}
+.portal-stage{margin:8px -2vw;aspect-ratio:2.6;overflow:hidden;position:relative}
+.portal-stage video,.portal-stage img{width:100%;height:100%;object-fit:cover;mix-blend-mode:lighten;display:block}
+.portal-replay{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 0;border-bottom:1px solid var(--studio-muted);font-size:12px;margin-left:auto}
+.portal-replay svg{width:15px;height:15px}
+.bold-cut :is(button,summary,a){-webkit-tap-highlight-color:transparent}
+.bold-cut :is(button,summary){transition:background-color .24s,color .24s,border-color .24s,box-shadow .24s}
+.bold-cut :is(button,a,summary):focus-visible{outline:2px solid var(--studio-lime);outline-offset:5px}
+.bold-cut .light-act :is(button,a,summary):focus-visible{outline-color:var(--studio-bg)}
+.bold-cut :is(button,a,summary):active{filter:brightness(.94)}
+.bold-cut :is(.project-film,.opening-next-picture,.opening-film,.service-screen,.proof-picture) :is(img,video){transition:filter .35s,scale .6s var(--studio-ease)}
+.bold-cut .opening-film-action,.bold-cut .opening-next-picture>span{transition:background .25s,color .25s,border-color .25s}
+@media(hover:hover) and (pointer:fine){
+ .bold-cut button:hover,.bold-cut summary:hover{box-shadow:inset 0 -1px 0 var(--studio-lime)}
+ .bold-cut .brand-action:hover{box-shadow:none}
+ .bold-cut :is(.project-film,.opening-next-picture,.service-screen):hover{outline:1px solid var(--studio-lime);outline-offset:4px}
+ .bold-cut :is(.project-film,.opening-next-picture,.opening-film,.service-screen,.proof-picture):hover :is(img,video){filter:brightness(1.055);scale:1.012}
+ .bold-cut .opening-film-action:hover,.bold-cut .opening-next-picture:hover>span{background:var(--studio-lime)!important;color:var(--studio-bg);border-color:var(--studio-lime)!important}
+ .bold-cut .portal-replay:hover,.bold-cut .opening-scroll:hover{color:var(--studio-lime)}
+ .bold-cut .pricing-open:hover{box-shadow:0 4px 0 var(--studio-lime)}
+ .bold-cut .film-inner header button:hover,.bold-cut .pricing-close:hover{background:var(--studio-lime);color:var(--studio-bg)}
+ .bold-cut .footer-brand .brand-word-last{background:linear-gradient(105deg,var(--studio-ink) 25%,var(--studio-lime) 45%,var(--studio-ink) 62%);background-size:240% 100%;background-position:100% 0;background-clip:text;-webkit-background-clip:text;color:transparent;transition:background-position .9s var(--studio-ease)}
+ .bold-cut .footer-brand:hover .brand-word-last{background-position:0 0}
+}
+@media(prefers-reduced-motion:no-preference){
+ [data-motion=on] .identity-header .brand-word-last{animation:brand-arrival .95s cubic-bezier(.22,1,.36,1) both}
+ @keyframes brand-arrival{0%,15%{clip-path:inset(0 100% 0 0);filter:brightness(1.8)}100%{clip-path:inset(0 0 0 0);filter:brightness(1)}}
+}
+@media(max-width:767px){
+ .bold-cut .opening-actions{gap:10px;flex-wrap:nowrap;align-items:stretch}
+ .bold-cut .opening-actions>.brand-action{flex:1;min-width:0}
+ .bold-cut .brand-action .magnetic-surface{font-size:11px;min-height:52px;padding:12px 10px;gap:8px;height:100%}
+ .bold-cut .brand-action .magnetic-surface>svg{width:16px!important;height:16px!important}
+ .brand-portal{padding-top:24px;padding-bottom:42px}
+ .portal-copy{gap:20px;display:block}.bold-cut .portal-copy p{font-size:17px;margin-top:15px}
+ .portal-stage{aspect-ratio:1.7;margin:8px -14px}.portal-stage video,.portal-stage img{object-fit:contain}
+ .portal-replay{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.bold-cut :is(button,summary,a,video,img),.portal-copy p,.bold-cut .footer-brand .brand-word-last{transition:none!important;animation:none!important}.bold-cut :is(.project-film,.opening-next-picture,.opening-film):hover :is(img,video){scale:1}}
+[data-motion=off] .identity-header .brand-word-last{animation:none}
+/* Dissolve the rendered background into the site's continuous graphite. */
+.portal-stage{mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.portal-stage video,.portal-stage img{mask-image:linear-gradient(0deg,transparent,#000 30%,#000 70%,transparent)}
+@media(max-width:767px){.bold-cut .brand-action .magnetic-surface{font-size:12px}}
+
+/* Header owns the signature; no product claim accompanies the studio mark. */
+.identity-header .header-brand-intro{position:relative;transform-origin:left top;isolation:isolate}
+.identity-header .header-brand-intro .brand-word-last{animation:none!important;clip-path:none;filter:none}
+.header-brand-intro .intro-letter{display:inline-block;transform-origin:left center;backface-visibility:hidden}
+.header-brand-intro.is-brand-intro .brand-word,.header-brand-intro.is-brand-intro .brand-splice{transition:none!important}
+.wordmark:has(.is-brand-intro):hover .brand-word,.wordmark:has(.is-brand-intro):hover .brand-splice{transform:none}
+@media(prefers-reduced-motion:reduce){.header-brand-intro,.header-brand-intro .intro-letter{transform:none!important;filter:none!important;opacity:1!important}}

@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "project": {
+    "name": "BOLDTAKE",
+    "productType": "Advertising studio portfolio",
+    "stack": [
+      "react",
+      "shadcn",
+      "tailwind-v4",
+      "vite"
+    ]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [
+      "src/components/ui"
+    ],
+    "assets": [
+      "public/assets",
+      "src/assets"
+    ],
+    "instructions": [
+      "AGENTS.md"
+    ]
+  },
+  "design": {
+    "colorMode": "dark",
+    "colors": {
+      "background": "#17191a",
+      "foreground": "#f1f2e9",
+      "accent": "#d5fa47"
+    },
+    "typography": {},
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [
+      "accordion",
+      "alert",
+      "alert-dialog",
+      "aspect-ratio",
+      "attachment",
+      "avatar",
+      "badge",
+      "breadcrumb",
+      "bubble",
+      "button",
+      "button-group",
+      "calendar",
+      "card",
+      "carousel",
+      "chart",
+      "checkbox",
+      "close-button",
+      "collapsible",
+      "combobox",
+      "command",
+      "context-menu",
+      "dialog",
+      "direction",
+      "drawer",
+      "dropdown-menu",
+      "empty",
+      "field",
+      "hover-card",
+      "input",
+      "input-group",
+      "input-otp",
+      "item",
+      "kbd",
+      "label",
+      "marker",
+      "marketing-button",
+      "menubar",
+      "message",
+      "message-scroller",
+      "native-select",
+      "navigation-menu",
+      "pagination",
+      "popover",
+      "progress",
+      "radio-group",
+      "resizable",
+      "scroll-area",
+      "select",
+      "separator",
+      "sheet",
+      "sidebar",
+      "skeleton",
+      "slider",
+      "sonner",
+      "spinner",
+      "switch",
+      "table",
+      "tabs",
+      "textarea",
+      "toggle",
+      "toggle-group",
+      "tooltip"
+    ],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Ukrainian copy",
+      "Real portfolio media",
+      "Single consistent SVG icon family",
+      "Readable media captions outside images"
+    ],
+    "avoid": [
+      "Emoji and unicode UI icons",
+      "Oversized outlined headings",
+      "Unrelated coloured project panels"
+    ]
+  },
+  "decisions": [
+    {
+      "decision": "Editorial hierarchy: proposition, portfolio, services, process, contact",
+      "source": "User rejected scattered text and requested premium clarity"
+    },
+    {
+      "decision": "BOLD CUT selected by user: moving diagonal edit boundary, hero/large first film, two unequal works, wide final architecture case. Remove section and process numbering and generic marketing copy.",
+      "source": "User selected concept 2"
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "components.installed",
+      "source": "src/components/ui"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:shadcn",
+      "source": "components.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-09-13T15:03:01.861Z"
+}
