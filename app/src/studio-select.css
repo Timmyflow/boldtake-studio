@@ -27,10 +27,10 @@
 .select-work-heading>p{color:var(--studio-muted);font-size:14px;line-height:1.7}
 .select-work-tools{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--studio-line);margin-bottom:26px}
 .select-filters{display:flex;gap:24px}
-.select-edition .select-filters button{position:relative;min-height:48px;font-size:13px;color:var(--studio-muted);padding:0 2px}
+.select-edition .select-filters button{position:relative;min-height:48px;font-size:14px;color:var(--studio-muted);padding:0 2px}
 .select-edition .select-filters button[aria-pressed=true]{color:var(--studio-ink)}
 .select-filters button>span{position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--studio-lime)}
-.select-work-count{font-size:11px;color:var(--studio-muted)}
+.select-work-count{font-size:13px;color:var(--studio-muted)}
 .select-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:32px 22px;align-items:start}
 .select-card{grid-column:span 4;min-width:0}
 .select-grid.is-all .select-card:nth-child(1){grid-column:span 6}
@@ -47,10 +47,10 @@
 .select-card-media:hover .select-card-cut{height:65px}
 .select-format{position:absolute;bottom:14px;right:14px;font-size:10px;padding:5px;background:var(--studio-bg)}
 .select-card-caption{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}.select-card-caption svg{width:15px;color:var(--studio-lime)}
-.select-edition .select-card h3{font-family:Manrope,sans-serif;font-size:clamp(14px,1.25vw,19px);letter-spacing:-.035em;font-weight:500;line-height:1.35}.select-card h3 button{text-align:left}
-.select-edition .select-card-meta{display:flex;justify-content:space-between;gap:12px;margin-top:7px;font-size:11px;color:var(--studio-muted);line-height:1.4}
-.select-edition .select-card-meta span{opacity:.7}
-.select-edition .select-disclosure{font-size:11px;line-height:1.7;color:var(--studio-muted);margin-top:30px;max-width:80ch}
+.select-edition .select-card h3{font-family:Manrope,sans-serif;font-size:clamp(17px,1.4vw,21px);letter-spacing:-.035em;font-weight:500;line-height:1.35}.select-card h3 button{text-align:left}
+.select-edition .select-card-meta{display:flex;justify-content:space-between;gap:12px;margin-top:7px;font-size:13px;color:var(--studio-muted);line-height:1.4}
+.select-edition .select-card-meta span{opacity:1}
+.select-edition .select-disclosure{font-size:13px;line-height:1.7;color:var(--studio-muted);margin-top:30px;max-width:80ch}
 .select-edition .select-dialog{background:var(--studio-bg);overflow-y:auto;padding:32px;max-width:none;width:100%;height:100%;max-height:none}
 .select-dialog .film-inner{max-width:1100px;margin:auto}
 .select-dialog .film-inner>video{width:100%;max-height:65svh;object-fit:contain;background:var(--studio-bg)}
@@ -76,13 +76,13 @@
  .select-edition .select-hero-image{height:290px}.select-hero-play{bottom:16px;left:16px;padding:11px 14px}
  .select-work{padding-block:28px 40px}.select-work-heading{align-items:start;gap:20px;margin-bottom:22px}
  .select-work-heading>p{display:none}.select-edition .select-work h2{font-size:32px}
- .select-filters{gap:18px}.select-edition .select-filters button{font-size:12px}.select-work-count{display:none}
+ .select-filters{gap:18px}.select-edition .select-filters button{font-size:14px}.select-work-count{display:none}
  .select-grid{gap:26px 12px}.select-card,.select-grid.is-all .select-card:nth-child(n){grid-column:span 6}
  .select-edition .select-card-media{height:clamp(150px,42vw,245px)}
- .select-edition .select-card h3{font-size:14px}.select-card-caption{margin-top:10px;gap:4px}.select-card-caption svg{display:none}
- .select-edition .select-card-meta{display:block;font-size:10px;line-height:1.6}.select-card-meta span{display:block}
- .select-card-open{bottom:8px;left:8px;padding:7px}.select-card-open>span{display:none}.select-format{bottom:8px;right:8px;font-size:9px}
- .select-edition .select-disclosure{font-size:10px;margin-top:24px}
+ .select-edition .select-card h3{font-size:16px}.select-card-caption{margin-top:10px;gap:4px}.select-card-caption svg{display:none}
+ .select-edition .select-card-meta{display:block;font-size:12px;line-height:1.6}.select-card-meta span{display:block}
+ .select-card-open{bottom:8px;left:8px;padding:7px}.select-card-open>span{display:none}.select-format{bottom:8px;right:8px;font-size:11px}
+ .select-edition .select-disclosure{font-size:12px;margin-top:24px}
  .select-edition .select-benefit-image{height:270px}.select-benefit-list article{padding-block:14px}
  .select-edition .select-dialog{padding:18px}.select-dialog.portrait-dialog .film-inner{display:block}.select-dialog.portrait-dialog .film-inner>header{margin-bottom:16px}
  .select-dialog.portrait-dialog .film-inner>video{height:60svh;max-height:60svh;width:100%}.select-dialog .film-inner>header h2{font-size:21px}

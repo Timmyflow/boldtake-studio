@@ -18,12 +18,14 @@ export function StudioOpening({enabled,onToggle,onFilm}:Props){
   if(!played.current){
    played.current=true;
    const intro=gsap.timeline({defaults:{ease:'power3.out'}});
-   intro.fromTo(q('.portal-title-line>span'),{yPercent:105},{yPercent:0,duration:.9,stagger:.09},.1);
-   intro.fromTo(q('.portal-eyebrow,.portal-description,.portal-actions,.portal-console'),{opacity:0,y:12},{opacity:1,y:0,duration:.6,stagger:.065},.35);
+   intro.fromTo(q('.portal-title-line>span'),{yPercent:105},{yPercent:0,duration:.9,stagger:.07},.1);
+   intro.fromTo(q('.portal-eyebrow,.portal-description,.portal-actions>.brand-action,.portal-console'),{opacity:0,y:12},{opacity:1,y:0,duration:.6,stagger:.065},.35);
    intro.fromTo(q('.portal-canvas'),{scale:1.045,opacity:.35},{scale:1,opacity:1,duration:1.2},0);
   }
   gsap.to(q('.portal-scroll-layer'),{scale:.94,y:28,ease:'none',scrollTrigger:{trigger:root.current,start:'top top',end:'bottom top',scrub:.7}});
-  gsap.to(q('.portal-copy'),{y:-25,ease:'none',scrollTrigger:{trigger:root.current,start:'top top',end:'bottom top',scrub:.7}});
+  // Only this timeline owns the heading's scroll transform; body copy stays stable.
+  gsap.to(q('.portal-copy h1'),{y:-18,ease:'none',scrollTrigger:{trigger:root.current,start:'top top',end:'bottom top',scrub:.7}});
+  gsap.fromTo(q('.portal-seam path'),{strokeDasharray:110,strokeDashoffset:110},{strokeDashoffset:0,duration:1.1,ease:'power3.out'});
  },{scope:root,dependencies:[enabled],revertOnUpdate:true});
  const move=(e:PointerEvent<HTMLElement>)=>{
   if(!enabled||e.pointerType!=='mouse'||!stage.current)return;
@@ -45,7 +47,7 @@ export function StudioOpening({enabled,onToggle,onFilm}:Props){
   <div className="portal-copy wrap">
    <p className="portal-eyebrow">BOLDTAKE / Студія AI-відеореклами</p>
    <h1 id="hero-title"><span className="portal-title-line"><span>Зі звичного.</span></span><span className="portal-title-line"><span>У неможливе.</span></span></h1>
-   <div className="portal-copy-bottom"><p className="portal-description">Рекламні відеоролики для брендів,<br/>продуктів і просторів.<br/><span>Ідея, що змінює ваш кадр.</span></p>
+   <div className="portal-copy-bottom"><p className="portal-description">Рекламні відеоролики для брендів, продуктів і просторів. <span>Від першої ідеї до готового відео.</span></p>
     <div className="portal-actions"><BrandAction enabled={enabled} href="#contact"><span>Обговорити проєкт</span><ArrowUpRight aria-hidden="true"/></BrandAction><BrandAction enabled={enabled} secondary onClick={e=>onFilm(1,e.currentTarget)}><Play aria-hidden="true"/><span>Дивитися ролик</span></BrandAction></div>
    </div>
   </div>

@@ -100,8 +100,12 @@ export function useStudioMotion(scope: RefObject<HTMLDivElement | null>, enabled
           q(".paper-plane,.paper-trace,.paper-slash").forEach((el,i)=>{
             gsap.fromTo(el,{x:desktop ? -55 : -18,y:-35},{x:desktop ? (i%2 ? -65 : 65) : 18,y:50,ease:"none",scrollTrigger:{trigger:paper,start:"top bottom",end:"bottom top",scrub:1.1}});
           });
-          q(".proof-intro,.proof-workbench,.proof-delivery").forEach((el)=>{
+          q(".proof-workbench").forEach((el)=>{
             gsap.fromTo(el,{y:24,opacity:.3},{y:0,opacity:1,duration:.75,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 94%",once:true}});
+          });
+          // Sequence complete ideas, keeping body text intact and readable.
+          q(".proof-intro,.proof-delivery").forEach((group)=>{
+            gsap.fromTo(Array.from(group.children),{y:18,opacity:0},{y:0,opacity:1,duration:.6,stagger:.07,ease:"power3.out",scrollTrigger:{trigger:group,start:"top 92%",once:true}});
           });
           const signature=root.querySelector(".finale-footer .footer-brand");
           // Adapted from the Motion Footer reveal pattern on 21st; normal flow keeps keyboard targets reachable.
@@ -133,7 +137,7 @@ export function useStudioMotion(scope: RefObject<HTMLDivElement | null>, enabled
               },
             ),
           );
-          q(".pricing-mobile,.portal-copy,.portal-replay").forEach(el=>{gsap.fromTo(el,{y:24,opacity:0},{y:0,opacity:1,duration:.75,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 90%",once:true}})});
+          q(".pricing-mobile,.portal-replay").forEach(el=>{gsap.fromTo(el,{y:24,opacity:0},{y:0,opacity:1,duration:.75,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 90%",once:true}})});
           q(".section-heading").forEach((section) => {
             const t = gsap.timeline({
               scrollTrigger: { trigger: section, start: "top 88%", toggleActions: "play none none reverse" },
