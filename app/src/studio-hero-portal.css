@@ -1,0 +1,77 @@
+/* One scene: the brand slash is a controllable boundary between still and motion. */
+.portal-edition{--ui-out:cubic-bezier(.23,1,.32,1);--ui-move:cubic-bezier(.77,0,.175,1)}
+.portal-edition .portal-hero{position:relative;isolation:isolate;min-height:730px;height:calc(100svh - 88px);max-height:1000px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:var(--studio-bg)}
+.portal-scroll-layer{position:absolute;inset:0;z-index:-3;transform-origin:center bottom}
+.portal-canvas{position:absolute;inset:-14px;overflow:hidden}
+.portal-canvas img,.portal-canvas video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% center}
+.portal-canvas .portal-still{filter:grayscale(1) brightness(.45)}
+.portal-live{position:absolute;inset:0}
+.portal-edition svg.portal-seam{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.portal-seam path{stroke:var(--studio-lime);stroke-width:1.5;fill:none;opacity:.65}
+.portal-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(13,16,16,.55),rgba(13,16,16,.12) 70%),linear-gradient(0deg,rgba(13,16,16,.9),transparent 45%)}
+.portal-edition .portal-copy{padding-top:clamp(48px,7svh,90px);padding-bottom:36px}
+.portal-edition .portal-eyebrow{font-size:12px;color:var(--studio-ink);margin-bottom:30px;line-height:1.5}
+.portal-edition .portal-copy h1{font-family:Manrope,sans-serif;font-size:clamp(62px,8.6vw,136px);font-weight:500;letter-spacing:-.075em;line-height:1.02;max-width:12ch}
+.portal-title-line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.portal-title-line>span{display:block}
+.portal-copy-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:40px}
+.portal-edition .portal-description{font-size:15px;line-height:1.65;max-width:40ch}.portal-description>span{color:var(--studio-muted)}
+.portal-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.portal-edition .portal-actions .brand-action{font-size:13px}.portal-edition .portal-actions .magnetic-surface{min-height:50px;padding:14px 20px}
+.portal-edition .portal-actions .brand-action-secondary .magnetic-surface{background:rgba(23,25,26,.8);border:1px solid rgba(241,242,233,.4);color:var(--studio-ink)}
+.portal-edition .portal-console{display:flex;align-items:end;justify-content:space-between;gap:40px;padding-bottom:32px;padding-top:24px}
+.portal-interaction{width:min(440px,50%)}
+.portal-interaction>label{display:flex;justify-content:space-between;gap:18px;font-size:11px;line-height:1.5;cursor:ew-resize}
+.portal-interaction label>span:last-child{display:flex;align-items:center;gap:8px;color:var(--studio-muted)}
+.portal-interaction svg{width:14px;height:14px}.portal-control-state{color:var(--studio-lime);margin-left:12px}
+.portal-interaction input{display:block;width:100%;height:44px;margin:4px 0 0;appearance:none;background:transparent;cursor:ew-resize;touch-action:pan-y}
+.portal-interaction input::-webkit-slider-runnable-track{height:1px;background:rgba(241,242,233,.5)}
+.portal-interaction input::-moz-range-track{height:1px;background:rgba(241,242,233,.5)}
+.portal-interaction input::-webkit-slider-thumb{appearance:none;width:32px;height:32px;margin-top:-15px;background:var(--studio-lime);border:10px solid var(--studio-bg);border-radius:50%;box-shadow:0 0 0 1px var(--studio-lime);transition:box-shadow 160ms ease}
+.portal-interaction input::-moz-range-thumb{width:12px;height:12px;background:var(--studio-lime);border:10px solid var(--studio-bg);border-radius:50%;box-shadow:0 0 0 1px var(--studio-lime)}
+.portal-interaction input:focus-visible{outline:2px solid var(--studio-lime);outline-offset:3px;border-radius:2px}
+.portal-console-right{display:flex;align-items:center;gap:36px;padding-bottom:8px}
+.portal-pause,.portal-to-work{display:flex;align-items:center;gap:10px;min-height:44px;font-size:12px}.portal-pause svg{width:14px;height:14px}.portal-to-work svg{width:18px;height:18px}
+@media(max-width:1000px){.portal-copy-bottom{display:block}.portal-actions{margin-top:24px}.portal-edition .portal-hero{min-height:760px}.portal-edition .portal-copy h1{font-size:10vw}}
+@media(max-width:767px){
+ .portal-edition .portal-hero{height:auto;min-height:calc(100svh - 76px);max-height:none}
+ .portal-edition .portal-copy{padding-top:48px;padding-bottom:34px}
+ .portal-edition .portal-copy h1{font-size:clamp(43px,11.5vw,84px);letter-spacing:-.065em;line-height:1.06}
+ .portal-edition .portal-eyebrow{font-size:10px;margin-bottom:28px}
+ .portal-canvas img,.portal-canvas video{object-position:67% center}
+ .portal-copy-bottom{margin-top:30px}.portal-edition .portal-description{font-size:13px}
+ .portal-actions{gap:12px;margin-top:26px}.portal-edition .portal-actions .magnetic-surface{font-size:12px;padding:12px 14px;min-height:46px}
+ .portal-edition .portal-console{padding-top:12px;padding-bottom:24px;flex-direction:column;align-items:stretch;gap:8px}
+ .portal-interaction{width:100%}.portal-console-right{justify-content:space-between;padding:0;gap:18px}
+ .portal-shade{background:linear-gradient(90deg,rgba(13,16,16,.65),rgba(13,16,16,.15)),linear-gradient(0deg,rgba(13,16,16,.9),transparent 70%)}
+}
+@media(prefers-reduced-motion:reduce){.portal-edition .portal-canvas,.portal-edition .portal-scroll-layer,.portal-edition .portal-copy{transform:none!important}}
+/* Interactive feedback: bounded, interruptible, and touch-safe. */
+.portal-edition :is(.portal-pause,.portal-to-work,.select-work-link,.select-filters button,.select-card h3 button,.proof-controls button,.phone-link,.footer-top a){transition:color 180ms ease,background-color 180ms ease}
+.portal-edition :is(.portal-pause,.portal-to-work,.select-card-caption,.proof-controls button,.question-row summary,.service summary) svg{transition:transform 220ms var(--ui-out),color 180ms ease}
+.portal-edition :is(.pricing-open,.pricing-close,.pricing-sheet-choose,.cut-menu-trigger,.cut-menu-close,.film-inner header button){transition:transform 160ms var(--ui-out),background-color 180ms ease,color 180ms ease}
+.portal-edition :is(.pricing-open,.pricing-close,.pricing-sheet-choose,.cut-menu-trigger,.cut-menu-close,.film-inner header button):active{transform:scale(.97)}
+.portal-edition .select-card-media:active{scale:.985}
+.portal-edition .select-card-media{transition:scale 160ms var(--ui-out)}
+.portal-edition .service summary,.portal-edition .question-row summary{transition:color 180ms ease}
+@media(hover:hover) and (pointer:fine){
+ .portal-edition :is(.portal-pause,.portal-to-work,.select-work-link,.select-filters button,.select-card h3 button,.phone-link,.footer-top a):hover{color:var(--studio-lime)}
+ .portal-to-work:hover svg{transform:translateY(3px)}
+ .portal-edition .select-card:hover .select-card-caption svg{transform:translate(2px,-2px)}
+ .portal-edition .proof-controls button:hover{background:var(--studio-bg);color:var(--studio-lime)}
+ .portal-edition .service summary:hover{color:var(--studio-paper-ink)}
+ .portal-edition .service summary:hover svg{transform:rotate(45deg)}
+ .portal-edition .question-row summary:hover{color:var(--studio-lime)}
+ .portal-edition .question-row summary:hover svg{transform:rotate(90deg)}
+ .portal-edition .portal-actions .brand-action-secondary:hover .magnetic-surface{background:var(--studio-ink);color:var(--studio-bg)}
+ .portal-interaction input:hover::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(213,250,71,.2),0 0 0 1px var(--studio-lime)}
+}
+@media(prefers-reduced-motion:reduce){.portal-edition *{scroll-behavior:auto!important}}
+@media(hover:none){
+ .portal-edition .select-card-media:hover>img{transform:none}
+ .portal-edition .select-card-media:hover .select-card-cut{height:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .portal-edition .select-card-media:active{scale:1}
+ .portal-edition :is(.pricing-open,.pricing-close,.pricing-sheet-choose,.cut-menu-trigger,.cut-menu-close,.film-inner header button):active{transform:none}
+}

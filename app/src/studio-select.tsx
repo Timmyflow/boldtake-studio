@@ -73,6 +73,9 @@ export function StudioGallery({enabled, blocked, onFilm}: {enabled:boolean; bloc
     root.current.querySelectorAll('.select-card-media').forEach(el=>{
       gsap.fromTo(el,{clipPath:'polygon(0 0,0 0,0 100%,0 100%)'},{clipPath:'polygon(0 0,115% 0,100% 100%,0 100%)',duration:.7,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 96%',once:true}});
     });
+    root.current.querySelectorAll('.select-card-caption,.select-card-meta').forEach(el=>{
+      gsap.fromTo(el,{y:10,opacity:0},{y:0,opacity:1,duration:.45,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 98%',once:true}});
+    });
   },{scope:root,dependencies:[enabled,filter],revertOnUpdate:true});
   return <section id="work" className="select-work wrap" ref={root} aria-labelledby="work-title">
     <div className="select-work-heading"><div><p className="select-eyebrow">Портфоліо</p><h2 id="work-title">Різні продукти.<br/>Різні характери.</h2></div><p>Від кінематографічного настрою<br/>до несподіваного гумору.</p></div>

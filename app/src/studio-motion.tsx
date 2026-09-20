@@ -116,6 +116,10 @@ export function useStudioMotion(scope: RefObject<HTMLDivElement | null>, enabled
             { y: -12, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
           );
+          // Reveal complete semantic groups; never stagger individual letters in body copy.
+          q(".select-work-heading>div,.select-work-heading>p,.select-work-tools,.select-disclosure,.single-offers>div,.single-terms,.package-row,.package-terms").forEach((group) => {
+            gsap.fromTo(group,{y:18,opacity:0},{y:0,opacity:1,duration:.6,ease:"power3.out",scrollTrigger:{trigger:group,start:"top 96%",once:true}});
+          });
           q(".contact-direct,.brief-panel,.footer-top,.footer-bottom").forEach((row) =>
             gsap.fromTo(
               row,
