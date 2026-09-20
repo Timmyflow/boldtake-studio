@@ -42,6 +42,11 @@ export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const url = new URL(request.url);
+      if (url.hostname === "www.boldtake.studio") {
+        url.hostname = "boldtake.studio";
+        url.protocol = "https:";
+        return applySecurityHeaders(Response.redirect(url.toString(), 301));
+      }
       if (
         url.pathname === "/app" ||
         url.pathname.startsWith("/app/") ||
