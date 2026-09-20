@@ -1,3 +1,4 @@
+import { SocialLink } from "../studio-social";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Play, Plus, X } from "lucide-react";
@@ -279,15 +280,7 @@ function Studio() {
           <div className="contact-grid">
             <div className="contact-direct">
               <span className="kicker">Напишіть напряму</span>
-              <a
-                className="telegram-link"
-                href="https://t.me/lmaze22"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                @lmaze22
-                <ArrowUpRight aria-hidden="true" />
-              </a>
+              <div className="contact-socials"><SocialLink network="telegram"/><SocialLink network="instagram"/></div>
               <a className="phone-link" href="tel:+380679468439">
                 +380 67 946 84 39
               </a>
@@ -304,6 +297,7 @@ function Studio() {
             <a href="#work">Роботи <ArrowUpRight aria-hidden="true"/></a>
             <a href="#pricing">Вартість <ArrowUpRight aria-hidden="true"/></a>
             <a href="#main">Нагору <ArrowUpRight aria-hidden="true"/></a>
+            <SocialLink network="instagram"/>
           </nav>
         </div>
         <a href="#main" className="footer-brand" aria-label="BOLDTAKE, нагору"><BrandMark /></a>

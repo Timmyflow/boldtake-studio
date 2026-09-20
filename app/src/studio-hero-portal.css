@@ -87,3 +87,25 @@
 .portal-edition[data-motion="on"] .service[open] .service-detail{animation:none}
 .portal-edition .question-row[data-closing="true"] summary>svg{transform:rotate(0deg)}
 .portal-edition .question-row{overflow-anchor:none}
+
+/* Branded social controls: consistent targets on mouse and touch. */
+.portal-edition .studio-social{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex-shrink:0;min-width:48px;min-height:48px;padding:12px;border:1px solid var(--studio-line);border-radius:50%;color:var(--studio-lime);transition:background-color 180ms ease,color 180ms ease,border-color 180ms ease}
+.portal-edition .studio-social svg{width:22px;height:22px;flex:none;color:inherit}
+.portal-edition .studio-social:after{display:none}
+.portal-edition .studio-social:has(span){border-radius:4px}
+.portal-edition .studio-social:focus-visible{outline:2px solid var(--studio-lime);outline-offset:4px}
+.contact-socials{display:flex;gap:14px;flex-wrap:wrap}
+.portal-edition .contact-socials .studio-social{width:60px;height:60px;background:var(--studio-lime);color:var(--studio-bg)}
+.portal-edition .contact-socials .studio-social svg{width:27px;height:27px}
+.portal-edition .cut-menu .studio-social{color:var(--studio-bg);border-color:currentColor}
+@media(hover:hover) and (pointer:fine){.portal-edition .studio-social:hover{background:var(--studio-lime);color:var(--studio-bg);border-color:var(--studio-lime)}.portal-edition .contact-socials .studio-social:hover{background:var(--studio-ink);border-color:var(--studio-ink)}}
+@media(max-width:1100px){.portal-edition .header-social{display:none}}
+@media(max-width:767px){
+ .portal-edition .select-filters{flex-wrap:wrap;gap:4px 18px}
+ .portal-edition .brief-extra-fields :is(input,select){font-size:16px;min-width:0;width:100%}
+ .portal-edition .brief-panel>*,.portal-edition .select-card,.portal-edition .film-inner{min-width:0}
+ .portal-edition .cut-menu-bottom{flex-wrap:wrap;align-items:center}
+ .portal-edition .cut-menu{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .portal-edition .select-dialog{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .portal-edition .film-inner>header>button{min-width:44px;min-height:44px;flex-shrink:0}
+}

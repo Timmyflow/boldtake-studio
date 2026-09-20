@@ -1,3 +1,4 @@
+import { SocialLink } from "./studio-social";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { ArrowUpRight, Plus, X } from "lucide-react";
 import gsap from "gsap";
@@ -98,6 +99,7 @@ export function StudioNavigation({ enabled }: { enabled: boolean }) {
               </a>
             ))}
         </nav>
+        <SocialLink network="instagram" className="header-social"/>
         <a href="#contact" className="nav-contact">
           Обговорити проєкт
           <ArrowUpRight aria-hidden="true" />
@@ -174,7 +176,7 @@ export function StudioNavigation({ enabled }: { enabled: boolean }) {
           </div>
         </div>
         <div className="cut-menu-bottom">
-          <span>Рекламні ролики для брендів.</span>
+          <SocialLink network="instagram" label/>
           <a href="https://t.me/lmaze22" target="_blank" rel="noopener noreferrer">
             Написати в Telegram
             <ArrowUpRight aria-hidden="true" />
