@@ -40,7 +40,7 @@ export function StudioNavigation({ enabled }: { enabled: boolean }) {
         const y = window.scrollY;
         const up = y < previous - 3;
         if (Math.abs(y-previous) > 3 || y < 100) {
-          header.current?.classList.toggle("nav-away", y > 150 && !up);
+          header.current?.classList.toggle("nav-away", window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches && y > 150 && !up);
           header.current?.classList.toggle("nav-return", y > 100);
           previous = y;
         }
@@ -61,7 +61,7 @@ export function StudioNavigation({ enabled }: { enabled: boolean }) {
         target?.focus({ preventScroll: true });
         if (target)
           window.scrollTo({
-            top: window.scrollY + target.getBoundingClientRect().top - 24,
+            top: window.scrollY + target.getBoundingClientRect().top - (header.current?.getBoundingClientRect().height || 76) - 16,
             behavior: "instant",
           });
       }, 120);

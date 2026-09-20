@@ -123,7 +123,7 @@ export function useStudioMotion(scope: RefObject<HTMLDivElement | null>, enabled
             gsap.fromTo(el,{x:i===0?-28:28},{x:0,ease:"none",scrollTrigger:{trigger:root.querySelector(".footer-curtain"),start:"top 90%",end:"bottom bottom",scrub:.6}});
           });
           const entrance = gsap.timeline();
-          entrance.fromTo(
+          if (window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches) entrance.fromTo(
             q(".identity-header"),
             { y: -12, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
