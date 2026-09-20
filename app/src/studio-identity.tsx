@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { ArrowUpRight, Plus, X } from "lucide-react";
+import gsap from "gsap";
 import { HeaderBrand } from "./studio-header-brand";
 import { projects } from "./studio-content";
 import { Words } from "./studio-motion";
@@ -183,56 +184,54 @@ export function StudioNavigation({ enabled }: { enabled: boolean }) {
     </>
   );
 }
-const disclosures = new WeakMap<HTMLDetailsElement, Animation>();
-export function animateDisclosure(e: MouseEvent<HTMLElement>, enabled: boolean) {
-  if (!enabled || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const details = e.currentTarget.parentElement as HTMLDetailsElement;
-  if (!details || details.tagName !== "DETAILS") return;
-  e.preventDefault();
-  const previous = disclosures.get(details);
+const disclosures = new WeakMap<HTMLDetailsElement, gsap.core.Timeline>();
+function setDisclosure(details: HTMLDetailsElement, opening: boolean, enabled: boolean) {
+  const summary = details.querySelector("summary");
+  if (!summary) return;
   const start = details.getBoundingClientRect().height;
-  const opening = details.dataset.closing === "true" || !details.open;
-  if (previous) {
-    previous.onfinish = null;
-    previous.cancel();
-  }
-  details.style.height = "";
-  details.open = true;
-  details.dataset.closing = opening ? "false" : "true";
-  const style = getComputedStyle(details);
-  const end = opening
-    ? details.getBoundingClientRect().height
-    : e.currentTarget.getBoundingClientRect().height +
-      parseFloat(style.paddingTop) +
-      parseFloat(style.paddingBottom) +
-      parseFloat(style.borderTopWidth) +
-      parseFloat(style.borderBottomWidth);
-  details.style.overflow = "hidden";
-  const anim = details.animate([{ height: `${start}px` }, { height: `${end}px` }], {
-    duration: 320,
-    easing: "cubic-bezier(.22,1,.36,1)",
-  });
-  disclosures.set(details, anim);
-  anim.onfinish = () => {
+  const interrupted = disclosures.has(details);
+  disclosures.get(details)?.kill();
+  disclosures.delete(details);
+  const content = details.querySelector<HTMLElement>(".question-answer,.service-detail,.brief-extra-fields");
+  const finish = () => {
     details.open = opening;
+    details.style.height = "";
     details.style.overflow = "";
     delete details.dataset.closing;
+    if (content) gsap.set(content, {clearProps:"opacity,transform"});
     disclosures.delete(details);
-    details.dispatchEvent(new Event("studio:layout", { bubbles: true }));
+    details.dispatchEvent(new Event("studio:layout", {bubbles:true}));
   };
+  if (!enabled || matchMedia("(prefers-reduced-motion: reduce)").matches) { finish(); return; }
+  details.style.height = "";
+  details.open = true;
+  details.dataset.closing = String(!opening);
+  const style = getComputedStyle(details);
+  const end = opening ? details.getBoundingClientRect().height : summary.getBoundingClientRect().height +
+    parseFloat(style.paddingTop) + parseFloat(style.paddingBottom) + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+  gsap.set(details,{height:start,overflow:"hidden"});
+  const timeline = gsap.timeline({onComplete:finish});
+  disclosures.set(details,timeline);
+  timeline.to(details,{height:end,duration:.42,ease:"power3.inOut"},0);
+  if (content) {
+    if (opening && !interrupted) gsap.set(content,{opacity:0,y:-10});
+    timeline.to(content,{opacity:opening?1:0,y:opening?0:-8,duration:opening?.3:.2,ease:"power2.out"},opening?.08:0);
+  }
+}
+export function animateDisclosure(e: MouseEvent<HTMLElement>, enabled: boolean) {
+  const details = e.currentTarget.parentElement as HTMLDetailsElement;
+  if (details?.tagName !== "DETAILS") return;
+  e.preventDefault();
+  setDisclosure(details,details.dataset.closing === "true" || !details.open,enabled);
 }
 function exclusiveQuestion(e: MouseEvent<HTMLElement>, enabled: boolean) {
-  const current = e.currentTarget.parentElement;
-  current?.parentElement?.querySelectorAll<HTMLDetailsElement>("details").forEach(other => {
-    if(other === current) return;
-    const animation = disclosures.get(other);
-    if(animation) { animation.onfinish = null; animation.cancel(); disclosures.delete(other); }
-    other.open = false;
-    other.style.height = "";
-    other.style.overflow = "";
-    delete other.dataset.closing;
+  const current = e.currentTarget.parentElement as HTMLDetailsElement;
+  e.preventDefault();
+  const opening = current.dataset.closing === "true" || !current.open;
+  if (opening) current.parentElement?.querySelectorAll<HTMLDetailsElement>("details").forEach(other => {
+    if (other !== current && other.open && other.dataset.closing !== "true") setDisclosure(other,false,enabled);
   });
-  animateDisclosure(e, enabled);
+  setDisclosure(current,opening,enabled);
 }
 const questions = [
   {
@@ -285,7 +284,7 @@ export function StudioQuestions({ enabled }: { enabled: boolean }) {
       </div>
       <div className="questions-list">
         {questions.map((q) => (
-          <details className="question-row" name="studio-faq" key={q.question}>
+          <details className="question-row" key={q.question}>
             <summary onClick={(e) => exclusiveQuestion(e, enabled)}>
               <h3>{q.question}</h3>
               <Plus aria-hidden="true" />

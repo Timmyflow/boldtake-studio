@@ -81,3 +81,9 @@
 .portal-edition .service-result-label,.portal-edition .brief-composer .brief-hint,.portal-edition .pricing-mobile-hint{font-size:13px;line-height:1.6}
 .portal-edition .finale-footer .footer-bottom{font-size:12px;line-height:1.6}
 @media(max-width:400px){.portal-actions{align-items:stretch;flex-direction:column;width:100%}.portal-actions .brand-action{width:100%}.portal-actions .magnetic-surface{justify-content:space-between;width:100%}}
+
+/* GSAP owns accordion content; legacy CSS entrances must not override it. */
+.portal-edition[data-motion="on"] .question-row[open] .question-answer,
+.portal-edition[data-motion="on"] .service[open] .service-detail{animation:none}
+.portal-edition .question-row[data-closing="true"] summary>svg{transform:rotate(0deg)}
+.portal-edition .question-row{overflow-anchor:none}

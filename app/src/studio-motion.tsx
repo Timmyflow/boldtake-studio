@@ -100,12 +100,20 @@ export function useStudioMotion(scope: RefObject<HTMLDivElement | null>, enabled
           q(".paper-plane,.paper-trace,.paper-slash").forEach((el,i)=>{
             gsap.fromTo(el,{x:desktop ? -55 : -18,y:-35},{x:desktop ? (i%2 ? -65 : 65) : 18,y:50,ease:"none",scrollTrigger:{trigger:paper,start:"top bottom",end:"bottom top",scrub:1.1}});
           });
-          q(".proof-workbench").forEach((el)=>{
-            gsap.fromTo(el,{y:24,opacity:.3},{y:0,opacity:1,duration:.75,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 94%",once:true}});
+          // Each semantic layer has one animation owner: type, supporting copy, then media.
+          q(".proof-intro").forEach(group=>{
+            const t=gsap.timeline({scrollTrigger:{trigger:group,start:"top 90%",once:true}});
+            t.fromTo(group.querySelectorAll(".word-inner"),{yPercent:110},{yPercent:0,duration:.8,stagger:.045,ease:"power3.out"},0);
+            t.fromTo(group.querySelectorAll(".kicker,p,.proof-promise"),{x:-18,opacity:0},{x:0,opacity:1,duration:.6,stagger:.07,ease:"power3.out"},.12);
           });
-          // Sequence complete ideas, keeping body text intact and readable.
-          q(".proof-intro,.proof-delivery").forEach((group)=>{
-            gsap.fromTo(Array.from(group.children),{y:18,opacity:0},{y:0,opacity:1,duration:.6,stagger:.07,ease:"power3.out",scrollTrigger:{trigger:group,start:"top 92%",once:true}});
+          q(".proof-workbench,.service-example").forEach(group=>{
+            const t=gsap.timeline({scrollTrigger:{trigger:group,start:"top 92%",once:true}});
+            t.fromTo(group.querySelectorAll(".proof-picture,.service-preview"),{clipPath:"inset(12% 0 12% 0)",scale:.97,opacity:.2},{clipPath:"inset(0% 0 0% 0)",scale:1,opacity:1,duration:.85,ease:"power3.out"},0);
+            t.fromTo(group.querySelectorAll(".proof-controls,.proof-caption,.service-benefit"),{x:18,opacity:0},{x:0,opacity:1,duration:.6,stagger:.07,ease:"power3.out"},.14);
+          });
+          q(".proof-delivery,.package-row,.single-offers,.pricing-mobile,.brief-panel,.contact-direct,.footer-top,.footer-bottom").forEach(group=>{
+            const children=Array.from(group.children).filter(el=>el.getClientRects().length);
+            gsap.fromTo(children,{x:(i)=>i%2?14:-14,opacity:0},{x:0,opacity:1,duration:.6,stagger:.07,ease:"power3.out",scrollTrigger:{trigger:group,start:"top 94%",once:true}});
           });
           const signature=root.querySelector(".finale-footer .footer-brand");
           // Adapted from the Motion Footer reveal pattern on 21st; normal flow keeps keyboard targets reachable.
@@ -121,26 +129,12 @@ export function useStudioMotion(scope: RefObject<HTMLDivElement | null>, enabled
             { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
           );
           // Reveal complete semantic groups; never stagger individual letters in body copy.
-          q(".select-work-heading>div,.select-work-heading>p,.select-work-tools,.select-disclosure,.single-offers>div,.single-terms,.package-row,.package-terms").forEach((group) => {
+          q(".select-work-heading>div,.select-work-heading>p,.select-work-tools,.select-disclosure,.single-terms,.package-terms").forEach((group) => {
             gsap.fromTo(group,{y:18,opacity:0},{y:0,opacity:1,duration:.6,ease:"power3.out",scrollTrigger:{trigger:group,start:"top 96%",once:true}});
           });
-          q(".contact-direct,.brief-panel,.footer-top,.footer-bottom").forEach((row) =>
-            gsap.fromTo(
-              row,
-              { y: 16, opacity: 0.15 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.7,
-                ease: "power3.out",
-                scrollTrigger: { trigger: row, start: "top 96%", once: true },
-              },
-            ),
-          );
-          q(".pricing-mobile,.portal-replay").forEach(el=>{gsap.fromTo(el,{y:24,opacity:0},{y:0,opacity:1,duration:.75,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 90%",once:true}})});
           q(".section-heading").forEach((section) => {
             const t = gsap.timeline({
-              scrollTrigger: { trigger: section, start: "top 88%", toggleActions: "play none none reverse" },
+              scrollTrigger: { trigger: section, start: "top 88%", once: true },
             });
             t.fromTo(
               section.querySelectorAll(".word-inner"),
