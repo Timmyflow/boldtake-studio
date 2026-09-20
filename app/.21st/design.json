@@ -35,7 +35,7 @@
     "radius": {},
     "shadows": {},
     "motion": {},
-    "density": "unknown"
+    "density": "compact editorial portfolio"
   },
   "components": {
     "installed": [
@@ -126,6 +126,10 @@
     {
       "decision": "BOLD CUT selected by user: moving diagonal edit boundary, hero/large first film, two unequal works, wide final architecture case. Remove section and process numbering and generic marketing copy.",
       "source": "User selected concept 2"
+    },
+    {
+      "decision": "User selected BOLD / SELECT: compact six-work gallery with filters, poster-to-video hover, expanding native video dialog; client benefits → real process proof → production steps → pricing → brief. Preserve graphite/lime palette, Ukrainian copy and approved pricing.",
+      "source": "User approval 2026-09-20"
     }
   ],
   "evidence": [
