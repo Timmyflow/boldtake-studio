@@ -25,7 +25,7 @@ export function StudioOpening({enabled,onToggle,onFilm}:Props){
   gsap.to(q('.portal-scroll-layer'),{scale:.94,y:28,ease:'none',scrollTrigger:{trigger:root.current,start:'top top',end:'bottom top',scrub:.7}});
   // Only this timeline owns the heading's scroll transform; body copy stays stable.
   gsap.to(q('.portal-copy h1'),{y:-18,ease:'none',scrollTrigger:{trigger:root.current,start:'top top',end:'bottom top',scrub:.7}});
-  gsap.fromTo(q('.portal-seam path'),{strokeDasharray:110,strokeDashoffset:110},{strokeDashoffset:0,duration:1.1,ease:'power3.out'});
+  gsap.fromTo(q('.portal-seam'),{scaleY:0,transformOrigin:'50% 0%'},{scaleY:1,duration:1.1,ease:'power3.out'});
  },{scope:root,dependencies:[enabled],revertOnUpdate:true});
  const move=(e:PointerEvent<HTMLElement>)=>{
   if(!enabled||e.pointerType!=='mouse'||!stage.current)return;
