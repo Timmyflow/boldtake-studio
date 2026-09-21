@@ -121,7 +121,7 @@ function buildHead(meta: AppMeta) {
       { rel: "canonical", href: `${siteUrl}/` },
       { rel: "manifest", href: "/site.webmanifest" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-      ...(favicon ? [{ rel: "icon", href: favicon }] : []),
+      ...(favicon ? [{ rel: "icon", href: favicon, ...(favicon.endsWith(".png") ? { type: "image/png", sizes: "192x192" } : {}) }] : []),
     ],
   };
 }
