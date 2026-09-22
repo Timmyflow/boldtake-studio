@@ -2,35 +2,35 @@ import { siteUrl } from './site-config';
 export const studioUrl = `${siteUrl}/`;
 export const studioTitle = "AI-відеореклама та рекламні ролики — BOLDTAKE";
 export const studioDescription =
-  "Створюємо рекламні відеоролики для брендів, продуктів і нерухомості за допомогою ШІ. Сценарій, генерація, монтаж і звук. Від 4 500 грн.";
+  "Створюємо рекламні відеоролики для брендів, продуктів і нерухомості за допомогою ШІ. Сценарій, генерація, монтаж і звук. Від 5 000 грн.";
 export const videoPackages = [
   {
     name: "Два акценти",
     description: "Два ролики по 10–15 секунд",
     detail: "Два різні початки або рекламні акценти в межах однієї ідеї.",
     price: 8000,
-    saving: 1000,
+    saving: 2000,
   },
   {
     name: "Запуск",
     description: "Ролик 20–30 секунд + ролик 10–15 секунд",
     detail: "Основний ролик і коротка версія з окремим початком для соцмереж.",
     price: 11000,
-    saving: 1500,
+    saving: 4000,
   },
   {
     name: "Кампанія",
     description: "Ролик 20–30 секунд + два ролики по 10–15 секунд",
     detail: "Основний ролик і два короткі ролики з різними рекламними акцентами.",
     price: 15000,
-    saving: 2000,
+    saving: 5000,
   },
   {
     name: "Серія",
     description: "Три ролики по 20–30 секунд",
     detail: "Три повноцінні ролики для одного бренду в межах спільної кампанії.",
     price: 21000,
-    saving: 3000,
+    saving: 9000,
   },
 ];
 export const formatPrice = (value: number) => new Intl.NumberFormat("uk-UA").format(value);
@@ -83,8 +83,8 @@ export const studioSchema = {
         name: "Ролики та пакети BOLDTAKE",
         itemListElement: [
           ...[
-            { name: "Ролик 10–15 секунд", price: 4500 },
-            { name: "Ролик 20–30 секунд", price: 8000 },
+            { name: "Ролик 10–15 секунд", price: 5000 },
+            { name: "Ролик 20–30 секунд", price: 10000 },
             ...videoPackages.map((p) => ({
               name: `Пакет «${p.name}»: ${p.description}`,
               price: p.price,
